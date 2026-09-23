@@ -108,7 +108,7 @@ async function callStaff(reason){
 async function showOrderStatus(){
   const saved=JSON.parse(localStorage.getItem("d504_orders")||"[]"); const box=$("#orderStatus"); box.innerHTML="";
   if(!saved.length){box.innerHTML='<div class="empty">Todavía no has enviado pedidos desde este dispositivo.</div>';$("#statusDialog").showModal();return}
-  for(const it of saved){const {data}=await sb.from("orders").select("id,status,total,created_at").eq("tracking_token",it.tracking_token).maybeSingle();const el=document.createElement("div");el.className="status-card";el.innerHTML="<b>"+statusLabel(data?.status||"RECEIVED")+"</b><div>"+money(data?.total??it.total)+"</div><small>"+new Date(data?.created_at||it.created_at).toLocaleString("es-HN")+"</small>";box.append(el)}
+  for(const it of saved){const {data}=await sb.rpc("get_public_order_status",{p_tracking_token:it.tracking_token});const el=document.createElement("div");el.className="status-card";el.innerHTML="<b>"+statusLabel(data?.status||"RECEIVED")+"</b><div>"+money(data?.total??it.total)+"</div><small>"+new Date(data?.created_at||it.created_at).toLocaleString("es-HN")+"</small>";box.append(el)}
   $("#statusDialog").showModal();
 }
 function statusLabel(s){return {RECEIVED:"Recibido",PREPARING:"Preparando",READY:"Listo",ON_THE_WAY:"En camino",DELIVERED:"Entregado",CANCELLED:"Cancelado"}[s]||s}
