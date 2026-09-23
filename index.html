@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090a0d">
+  <title>Distrito 504 · Menú QR</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <div id="splash"><div class="mark">D504</div><b>Preparando tu experiencia</b></div>
+
+  <header class="topbar">
+    <button id="placeButton" class="place">
+      <small>ESTÁS EN</small>
+      <strong id="placeName">Distrito 504</strong>
+    </button>
+    <div class="header-actions">
+      <button id="bellButton" class="icon-button" aria-label="Llamar al personal">🔔</button>
+      <button id="orderButton" class="icon-button" aria-label="Ver pedidos">🧾</button>
+      <button id="cartButton" class="cart-button">🛒 <b id="cartCount">0</b></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span>DISTRITO 504</span>
+        <h1>La Bandeja + Beer Station, en un solo pedido.</h1>
+        <p>Escanea, elige, pide y disfruta sin levantarte de tu mesa o cancha.</p>
+        <button id="heroAction">Ver menú</button>
+      </div>
+    </section>
+
+    <section class="menu-head">
+      <div><small>MENÚ</small><h2>¿Qué se te antoja?</h2></div>
+      <button id="searchButton">Buscar</button>
+    </section>
+
+    <input id="search" class="search hidden" placeholder="Busca hamburguesa, smoothie, cerveza…">
+    <nav id="categories" class="categories"></nav>
+    <section id="products" class="products"></section>
+  </main>
+
+  <button id="cartDock" class="cart-dock hidden">
+    <span><b id="dockCount">0</b> productos</span>
+    <strong id="dockTotal">L 0.00 →</strong>
+  </button>
+
+  <dialog id="productDialog">
+    <button class="dialog-close" data-close>×</button>
+    <div class="dialog-body">
+      <small id="detailBrand"></small>
+      <h2 id="detailName"></h2>
+      <p id="detailDescription"></p>
+      <div id="optionGroups"></div>
+      <label>Indicaciones
+        <textarea id="itemNote" placeholder="Ej. sin cebolla, poco hielo…"></textarea>
+      </label>
+      <div class="dialog-total">
+        <b id="detailPrice"></b>
+        <button id="addConfigured">Agregar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="cartDialog">
+    <button class="dialog-close" data-close>×</button>
+    <div class="dialog-body">
+      <small>TU PEDIDO</small>
+      <h2>Revisa antes de enviar</h2>
+      <div id="cartItems"></div>
+      <div class="grand"><span>Total</span><b id="cartTotal">L 0.00</b></div>
+      <label>Tu nombre<input id="customerName" maxlength="60" placeholder="¿Cómo te llamas?"></label>
+      <button id="sendOrder" class="primary">Enviar pedido</button>
+    </div>
+  </dialog>
+
+  <dialog id="statusDialog">
+    <button class="dialog-close" data-close>×</button>
+    <div class="dialog-body">
+      <small>PEDIDOS DE ESTA SESIÓN</small>
+      <h2>Así va tu pedido</h2>
+      <div id="orderStatus"></div>
+    </div>
+  </dialog>
+
+  <dialog id="bellDialog">
+    <button class="dialog-close" data-close>×</button>
+    <div class="dialog-body">
+      <small>LLAMAR AL PERSONAL</small>
+      <h2>¿En qué te ayudamos?</h2>
+      <div class="bell-options">
+        <button data-reason="ATENCION">🙋 Necesito atención</button>
+        <button data-reason="CUENTA">🧾 Quiero la cuenta</button>
+        <button data-reason="LIMPIEZA">✨ Necesitamos limpieza</button>
+        <button data-reason="PEDIDO">🍽️ Consulta sobre el pedido</button>
+      </div>
+      <p id="bellMessage"></p>
+    </div>
+  </dialog>
+
+  <div id="toast" role="status"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
